@@ -9,15 +9,15 @@ function Cryptocurrencies() {
   const navigate = useNavigate();
 
   const [coins, setCoins] = useState([]);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
   const fetchCoins = async () => {
-    setLoading(true);
+    // setLoading(true);
     const { data } = await axios.get(CoinList());
     setCoins(data);
-    setLoading(false);
+    // setLoading(false);
   };
 
   useEffect(() => {
