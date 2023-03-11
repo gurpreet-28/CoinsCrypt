@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import CoinInfoChart from "../components/CoinInfoChart";
 import { SingleCoin } from "../config/api";
 import "./CoinPage.css";
-// import HTMLReactParser from "html-react-parser";
 
 function CoinPage() {
   const { id } = useParams();
@@ -14,8 +13,6 @@ function CoinPage() {
     const { data } = await axios.get(SingleCoin(id));
     setCoin(data);
   };
-
-  // console.log(coin);
 
   useEffect(() => {
     fetchCoin();
