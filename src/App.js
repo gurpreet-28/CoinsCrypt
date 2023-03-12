@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import CoinPage from "./pages/CoinPage";
 import HomePage from "./pages/HomePage";
 import Cryptocurrencies from "./pages/Cryptocurrencies";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/coins" element={<Cryptocurrencies />} exact />
           <Route path="/coins/:id" element={<CoinPage />} exact />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );

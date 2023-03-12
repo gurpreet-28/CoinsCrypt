@@ -1,12 +1,14 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "./Navbar.css";
+import crypto from "./crypto.png";
 
 function Navbar() {
   const navigate = useNavigate();
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+      <nav className="navbar navbar-expand-lg fixed-top">
         <div className="container-fluid">
           <Link
             className="navbar-brand"
@@ -15,6 +17,12 @@ function Navbar() {
               navigate("/");
             }}
           >
+            <img
+              src={crypto}
+              alt="Logo"
+              width="36"
+              class="d-inline-block align-text-top"
+            ></img>{" "}
             CoinsCrypt
           </Link>
           <button
@@ -41,12 +49,12 @@ function Navbar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="/">
+                <Link className="nav-link" aria-current="page" to="/watchlist">
                   Watchlist
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="/">
+                <Link className="nav-link" aria-current="page" to="/news">
                   News
                 </Link>
               </li>

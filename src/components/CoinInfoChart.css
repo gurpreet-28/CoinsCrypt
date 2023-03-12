@@ -1,0 +1,30 @@
+.chart-head {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+}
+.info-head h2 {
+  font-size: 30px;
+  color: rgba(0, 0, 0, 0.8);
+}
+.price-head h3 {
+  font-size: 18px;
+}
+.price-head span {
+  color: rgba(0, 0, 0, 0.75);
+}
+.days-btn {
+  border: 1px solid #144b9d !important;
+  color: #144b9d !important;
+}
+.days-btn:hover {
+  background-color: #144b9d !important;
+  color: white !important;
+}
+.coin-info {
+  margin-top: 50px;
+  width: 80%;
+}
+.right {
+  text-align: right;
+}
