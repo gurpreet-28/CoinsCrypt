@@ -6,5 +6,4 @@ users with the ability to monitor their cryptocurrency
 investments, view price charts and graphs, set alerts for price
 changes, and receive news and updates on the cryptocurrency
 market.
-
-### `https://coinscrypt.netlify.app/`
+ `https://coinscrypt.netlify.app/`
