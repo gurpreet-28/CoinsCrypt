@@ -52,7 +52,7 @@ function Cryptocurrencies() {
           {loading ? (
             <Spinner />
           ) : (
-            <table className="table table-hover table-responsiv align-middle mt-4">
+            <table className="table table-hover table-responsive align-middle mt-4">
               <thead>
                 <tr>
                   <th scope="col">Rank</th>

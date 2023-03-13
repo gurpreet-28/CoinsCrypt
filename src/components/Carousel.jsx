@@ -4,15 +4,21 @@ import { Link } from "react-router-dom";
 import { TrendingCoins } from "../config/api";
 import "./Carousel.css";
 
-const Carousel = () => {
+const Carousel = ({ setLoading }) => {
   const [trending, setTrending] = useState([]);
 
-  const fetchTrendingCoins = async () => {
-    const { data } = await axios.get(TrendingCoins());
-    setTrending(data.coins);
+  const options = {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
   };
 
-  // console.log(trending);
+  const fetchTrendingCoins = async () => {
+    setLoading(true);
+    const { data } = await axios.get(TrendingCoins(), options);
+    setLoading(false);
+    setTrending(data.coins);
+  };
 
   useEffect(() => {
     fetchTrendingCoins();

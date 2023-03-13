@@ -1,7 +1,5 @@
 .banner {
-  background-color: white;
+  color: white;
+  background-color: #144b9d;
   background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
-}
-.main-head {
-  color: #144b9d;
 }

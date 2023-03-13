@@ -45,16 +45,16 @@ const CoinInfoChart = ({ id, coin }) => {
         <div className="info-head">
           <h2>{coin.name} Price Chart</h2>
           <div className="days mt-3">
-            <div class="dropdown">
+            <div className="dropdown">
               <button
-                class="btn dropdown-toggle days-btn"
+                className="btn dropdown-toggle days-btn"
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
                 {duration}
               </button>
-              <ul class="dropdown-menu">
+              <ul className="dropdown-menu">
                 {chartDays.map((day) => {
                   return (
                     <li>
@@ -120,7 +120,7 @@ const CoinInfoChart = ({ id, coin }) => {
             An overview showing the statistics of Binance USD, such as the base
             and quote currency, the rank, and trading volume.
           </p>
-          <table class="table table-hover">
+          <table className="table table-hover">
             <tbody>
               <tr>
                 <td>Price to USD</td>
@@ -162,7 +162,7 @@ const CoinInfoChart = ({ id, coin }) => {
             An overview showing the statistics of Binance USD, such as the base
             and quote currency, the rank, and trading volume.
           </p>
-          <table class="table table-hover">
+          <table className="table table-hover">
             <tbody>
               <tr>
                 <td>Number Of Markets</td>

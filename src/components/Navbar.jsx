@@ -21,7 +21,7 @@ function Navbar() {
               src={crypto}
               alt="Logo"
               width="36"
-              class="d-inline-block align-text-top"
+              className="d-inline-block align-text-top"
             ></img>{" "}
             CoinsCrypt
           </Link>

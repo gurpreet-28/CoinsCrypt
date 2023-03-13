@@ -9,9 +9,9 @@ const Footer = () => {
         <p>All rights reserved</p>
       </div>
       <div className="social-icons">
-        <i class="fa-brands fa-facebook"></i>
-        <i class="fa-brands fa-twitter"></i>
-        <i class="fa-solid fa-envelope"></i>
+        <i className="fa-brands fa-facebook"></i>
+        <i className="fa-brands fa-twitter"></i>
+        <i className="fa-solid fa-envelope"></i>
       </div>
     </div>
   );
