@@ -15,7 +15,7 @@ import {
   Legend,
 } from "chart.js";
 
-const CoinInfoChart = ({ id, coin }) => {
+const CoinInfoChart = ({ uuid, coin }) => {
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -25,19 +25,26 @@ const CoinInfoChart = ({ id, coin }) => {
     Tooltip,
     Legend
   );
-  const [historicData, setHistoricData] = useState();
-  const [days, setDays] = useState(1);
-  const [duration, setDuration] = useState("24 Hours");
+  const apiKey = process.env.REACT_APP_API_KEY;
+
+  const [historicData, setHistoricData] = useState([]);
+  const [duration, setDuration] = useState("24h");
+  const [label, setLabel] = useState("24 Hours");
 
   const fetchHistoricalData = async () => {
-    const { data } = await axios.get(HistoricalChart(id, days));
-    setHistoricData(data.prices);
+    const options = {
+      headers: {
+        "x-access-token": apiKey,
+      },
+    };
+    const { data } = await axios.get(HistoricalChart(uuid, duration), options);
+    setHistoricData(data.data.history);
   };
 
   useEffect(() => {
     fetchHistoricalData();
     // eslint-disable-next-line
-  }, [days]);
+  }, [duration]);
 
   return (
     <>
@@ -52,7 +59,7 @@ const CoinInfoChart = ({ id, coin }) => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                {duration}
+                {label}
               </button>
               <ul className="dropdown-menu">
                 {chartDays.map((day) => {
@@ -63,8 +70,8 @@ const CoinInfoChart = ({ id, coin }) => {
                         key={day.value}
                         type="button"
                         onClick={() => {
-                          setDays(day.value);
-                          setDuration(day.label);
+                          setDuration(day.value);
+                          setLabel(day.label);
                         }}
                       >
                         {day.label}
@@ -78,115 +85,36 @@ const CoinInfoChart = ({ id, coin }) => {
         </div>
         <div className="price-head">
           <h3>
-            <span>Current {coin.name} price in USD: </span>$
-            {coin?.market_data?.current_price?.usd}
+            <span>Current {coin.name} price in USD: </span>${coin.price}
           </h3>
           <h3 className="mt-3">
             <span>Change in last 24h: </span>
-            {coin?.market_data?.price_change_percentage_24h.toFixed(2)}%
+            {coin.change}%
           </h3>
         </div>
       </div>
       <div className="chart" style={{ width: "90%" }}>
-        {!historicData ? (
-          <h1>Hello</h1>
-        ) : (
-          <Line
-            data={{
-              labels: historicData.map((data) => {
-                let date = new Date(data[0]);
-                let time =
-                  date.getHours() > 12
-                    ? `${date.getHours() - 12}:${date.getMinutes()} PM`
-                    : `${date.getHours()}:${date.getMinutes()} AM`;
+        <Line
+          key={Math.random()}
+          data={{
+            labels: historicData.map((data) => {
+              let date = new Date(data.timestamp);
+              let time =
+                date.getHours() > 12
+                  ? `${date.getHours() - 12}:${date.getMinutes()} PM`
+                  : `${date.getHours()}:${date.getMinutes()} AM`;
 
-                return days === 1 ? time : date.toLocaleDateString();
-              }),
-              datasets: [
-                {
-                  data: historicData.map((data) => data[1]),
-                  label: `Price in USD`,
-                  borderColor: "#144b9d",
-                },
-              ],
-            }}
-          />
-        )}
-      </div>
-      <div className="row row-cols-lg-2 row-cols-sm-1 coin-info">
-        <div className="col">
-          <h2>{coin.name} USD Value Statistics</h2>
-          <p>
-            An overview showing the statistics of Binance USD, such as the base
-            and quote currency, the rank, and trading volume.
-          </p>
-          <table className="table table-hover">
-            <tbody>
-              <tr>
-                <td>Price to USD</td>
-                <td className="right">
-                  $ {coin?.market_data?.current_price?.usd}
-                </td>
-              </tr>
-              <tr>
-                <td>Rank</td>
-                <td className="right">{coin?.market_cap_rank}</td>
-              </tr>
-              <tr>
-                <td>24h Volume</td>
-                <td className="right">
-                  ${" "}
-                  {coin?.market_data?.total_volume?.usd.toString().slice(0, -9)}
-                  B
-                </td>
-              </tr>
-              <tr>
-                <td>Market Cap</td>
-                <td className="right">
-                  $ {coin?.market_data?.market_cap?.usd.toString().slice(0, -9)}
-                  B
-                </td>
-              </tr>
-              <tr>
-                <td>All-time-high(daily avg.)</td>
-                <td className="right">
-                  $ {coin?.market_data?.high_24h?.usd.toString().slice(0, -3)}K
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="col">
-          <h2>Other Stats Info</h2>
-          <p>
-            An overview showing the statistics of Binance USD, such as the base
-            and quote currency, the rank, and trading volume.
-          </p>
-          <table className="table table-hover">
-            <tbody>
-              <tr>
-                <td>Number Of Markets</td>
-                <td className="right">Mark</td>
-              </tr>
-              <tr>
-                <td>Number Of Exchanges</td>
-                <td className="right">Jacob</td>
-              </tr>
-              <tr>
-                <td>Aprroved Supply</td>
-                <td className="right">@twitter</td>
-              </tr>
-              <tr>
-                <td>Total Supply</td>
-                <td className="right">@twitter</td>
-              </tr>
-              <tr>
-                <td>Circulating Supply</td>
-                <td className="right">@twitter</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+              return duration === "24h" ? time : date.toLocaleDateString();
+            }),
+            datasets: [
+              {
+                data: historicData.map((data) => data.price),
+                label: `Price in USD`,
+                borderColor: "#144b9d",
+              },
+            ],
+          }}
+        />
       </div>
     </>
   );

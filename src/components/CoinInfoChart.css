@@ -23,8 +23,18 @@
 }
 .coin-info {
   margin-top: 50px;
-  width: 80%;
+  width: 90%;
 }
 .right {
   text-align: right;
+}
+.coin-info h2 {
+  color: #144b9d;
+}
+.coin-info p {
+  color: rgba(0, 0, 0, 0.75);
+}
+.coin-info td {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.8);
 }

@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import News from "./pages/News";
 import Cryptocurrencies from "./pages/Cryptocurrencies";
 import Footer from "./components/Footer";
+import Watchlist from "./pages/Watchlist";
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} exact />
           <Route path="/coins" element={<Cryptocurrencies />} exact />
-          <Route path="/coins/:id" element={<CoinPage />} exact />
+          <Route path="/coin/:uuid" element={<CoinPage />} exact />
+          <Route path="/watchlist" element={<Watchlist />} exact />
           <Route path="/news" element={<News />} exact />
         </Routes>
         <Footer />

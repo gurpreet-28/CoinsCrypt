@@ -1,1 +1,45 @@
-
+.carousel-section {
+  margin-top: 20px;
+  margin-bottom: 70px;
+}
+.carousel-section .col {
+  text-decoration: none;
+}
+.carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.coin-img {
+  width: 72px;
+}
+.carousel-head h3 {
+  margin: 20px 0;
+  color: #144b9d;
+}
+.carousel-card {
+  display: flex;
+  background-color: #f1f6ff;
+  width: 300px;
+  height: 105px;
+  padding: 20px;
+  border-radius: 5px;
+}
+.carousel-card .carousel-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-left: 15px;
+  width: 100%;
+  color: #0a0a23;
+  text-decoration: none;
+}
+.carousel-card .carousel-card-body p {
+  font-size: 23px;
+  margin-bottom: 0;
+}
+.carousel-card .carousel-card-body h5 {
+  font-size: 17px;
+}

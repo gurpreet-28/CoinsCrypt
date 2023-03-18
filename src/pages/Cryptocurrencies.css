@@ -1,3 +1,11 @@
-.coin-row {
+.crypto-list h2 {
+  color: #144b9d;
+}
+.coin-name {
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 450;
+}
+.coin-row i {
   cursor: pointer;
 }

@@ -7,19 +7,32 @@ import { CoinList } from "../config/api";
 import "./Cryptocurrencies.css";
 
 function Cryptocurrencies() {
+  const apiKey = process.env.REACT_APP_API_KEY;
   const navigate = useNavigate();
 
-  const [coins, setCoins] = useState([]);
+  const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
+  let wishlist = [];
+
   const fetchCoins = async () => {
+    const options = {
+      headers: {
+        "x-access-token": apiKey,
+      },
+    };
+
     setLoading(true);
-    const { data } = await axios.get(CoinList());
-    setCoins(data);
+    const { data } = await axios.get(CoinList(), options);
+    setList(data.data.coins);
     setLoading(false);
   };
+
+  list.sort((a, b) => {
+    return a.rank - b.rank;
+  });
 
   useEffect(() => {
     fetchCoins();
@@ -27,7 +40,7 @@ function Cryptocurrencies() {
   }, []);
 
   const handleSearch = () => {
-    return coins.filter((coin) => {
+    return list.filter((coin) => {
       return (
         coin.name.toLowerCase().includes(search) ||
         coin.symbol.toLowerCase().includes(search)
@@ -37,13 +50,13 @@ function Cryptocurrencies() {
 
   return (
     <>
-      <div className="mt-5">
-        <div className="container py-5" id="featured-3">
+      <div className="mt-5 crypto-list">
+        <div className="container py-5">
           <h2 className="pb-2 mb-4 border-bottom">
             Cryptocurrency Prices by Market Cap
           </h2>
           <TextField
-            label="Search For a CryptoCurrency"
+            label="Search for a cryptocurrency"
             style={{ marginBottom: "0", width: "100%" }}
             onChange={(e) => {
               setSearch(e.target.value);
@@ -60,6 +73,7 @@ function Cryptocurrencies() {
                   <th scope="col">Price</th>
                   <th scope="col">24H Change</th>
                   <th scope="col">Market Cap</th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
@@ -67,25 +81,45 @@ function Cryptocurrencies() {
                   .slice((page - 1) * 10, (page - 1) * 10 + 10)
                   .map((row) => {
                     return (
-                      <tr
-                        onClick={() => {
-                          navigate(`/coins/${row.id}`);
-                        }}
-                        key={row.name}
-                        className="coin-row"
-                      >
-                        <th scope="row">{row.market_cap_rank}</th>
-                        <td>
+                      <tr key={row.name} className="coin-row">
+                        <th scope="row">{row.rank}</th>
+                        <td
+                          onClick={() => {
+                            navigate(`/coin/${row.uuid}`);
+                          }}
+                          className="coin-name"
+                        >
                           <img
-                            src={row.image}
+                            src={row.iconUrl}
                             alt="coin-img"
                             style={{ width: "45px" }}
-                          />{" "}
+                          />
+                          {"   "}
                           {row.name}
                         </td>
-                        <td>$ {row.current_price}</td>
-                        <td>{row.price_change_percentage_24h}%</td>
-                        <td>$ {row.market_cap.toString().slice(0, -6)}M</td>
+                        <td>$ {row.price}</td>
+                        <td
+                          style={
+                            row.change < 0
+                              ? { color: "red" }
+                              : { color: "green" }
+                          }
+                        >
+                          {row.change}%
+                        </td>
+                        <td>$ {row.marketCap}</td>
+                        <td>
+                          <i
+                            onClick={() => {
+                              wishlist.push(row.name);
+                              localStorage.setItem(
+                                "wishlist",
+                                JSON.stringify(wishlist)
+                              );
+                            }}
+                            className="fa-regular fa-star"
+                          ></i>
+                        </td>
                       </tr>
                     );
                   })}

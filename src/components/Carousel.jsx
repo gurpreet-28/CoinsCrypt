@@ -1,50 +1,71 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { TrendingCoins } from "../config/api";
 import "./Carousel.css";
 
-const Carousel = ({ setLoading }) => {
-  const [trending, setTrending] = useState([]);
-
-  const options = {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    },
-  };
-
-  const fetchTrendingCoins = async () => {
-    setLoading(true);
-    const { data } = await axios.get(TrendingCoins(), options);
-    setLoading(false);
-    setTrending(data.coins);
-  };
-
-  useEffect(() => {
-    fetchTrendingCoins();
-    // eslint-disable-next-line
-  }, []);
-
+const Carousel = ({ bestCoins, newestCoins }) => {
   return (
-    <>
-      <div className="trending-head">Trending Coins</div>
-      <div className="container text-center">
-        <div className="row">
-          {trending.map((coin) => {
-            let price = coin.item.price_btc * 21756.5;
-            return (
-              <Link className="col my-2 mx-2 p-2" to={`/coins/${coin.item.id}`}>
-                <img src={coin.item.small} alt="coin-img" />
-                <div className="card-body">
-                  <h5 className="card-title">{coin.item.name}</h5>
-                  <p className="card-text">$ {price.toFixed(4)}</p>
-                </div>
-              </Link>
-            );
-          })}
+    <div className="carousel-section">
+      <div className="best carousel">
+        <div className="carousel-head">
+          <h3>Trending Coins</h3>
+        </div>
+        <div className="container text-center">
+          <div className="row">
+            {bestCoins.map((coin) => {
+              return (
+                <Link
+                  className="col mx-5"
+                  to={`/coin/${coin.uuid}`}
+                  key={coin.uuid}
+                >
+                  <div className="carousel-card my-2">
+                    <img
+                      src={coin.iconUrl}
+                      alt="coin-img"
+                      className="coin-img"
+                    />
+                    <div className="carousel-card-body">
+                      <p>{coin.symbol}</p>
+                      <h5 className="carousel-card-title">{coin.name}</h5>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </>
+      <div className="new carousel mt-5">
+        <div className="carousel-head">
+          <h3>Newest Coins</h3>
+        </div>
+        <div className="container text-center">
+          <div className="row">
+            {newestCoins.map((coin) => {
+              return (
+                <Link
+                  className="col mx-5"
+                  to={`/coin/${coin.uuid}`}
+                  key={coin.uuid}
+                >
+                  <div className="carousel-card my-2">
+                    <img
+                      src={coin.iconUrl}
+                      alt="coin-img"
+                      className="coin-img"
+                    />
+                    <div className="carousel-card-body">
+                      <p>{coin.symbol}</p>
+                      <h5 className="carousel-card-title">{coin.name}</h5>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
