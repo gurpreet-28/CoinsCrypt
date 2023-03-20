@@ -5,6 +5,9 @@
   justify-content: center;
   padding-top: 80px;
 }
+.coin-page tr:hover {
+  background-color: #f1f6ff;
+}
 .coin-head {
   display: flex;
   flex-direction: column;
@@ -22,6 +25,23 @@
   font-size: 18px;
   color: rgba(0, 0, 0, 0.6);
 }
+.info-table td {
+  padding: 20px 8px !important;
+}
+
 .links {
   width: 80%;
+  margin: 20px auto;
+}
+.links h2 {
+  color: #144b9d;
+}
+.links th {
+  padding: 20px 10px !important;
+}
+.links td {
+  padding: 20px 10px;
+}
+.links td a {
+  text-decoration: none;
 }

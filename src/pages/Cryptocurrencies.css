@@ -9,3 +9,6 @@
 .coin-row i {
   cursor: pointer;
 }
+.coin-row:hover {
+  background-color: #f1f6ff;
+}

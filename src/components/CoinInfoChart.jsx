@@ -46,10 +46,23 @@ const CoinInfoChart = ({ uuid, coin }) => {
     // eslint-disable-next-line
   }, [duration]);
 
+  function convertToInternationalCurrencySystem(labelValue) {
+    // Nine Zeroes for Billions
+    return Math.abs(Number(labelValue)) >= 1.0e9
+      ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + "B"
+      : // Six Zeroes for Millions
+      Math.abs(Number(labelValue)) >= 1.0e6
+      ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + "M"
+      : // Three Zeroes for Thousands
+      Math.abs(Number(labelValue)) >= 1.0e3
+      ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + "K"
+      : Math.abs(Number(labelValue)).toFixed(2);
+  }
+
   return (
     <>
-      <div className="chart-head">
-        <div className="info-head">
+      <div className="row chart-head">
+        <div className="col info-head">
           <h2>{coin.name} Price Chart</h2>
           <div className="days mt-3">
             <div className="dropdown">
@@ -83,13 +96,18 @@ const CoinInfoChart = ({ uuid, coin }) => {
             </div>
           </div>
         </div>
-        <div className="price-head">
+        <div className="col price-head text-end">
           <h3>
-            <span>Current {coin.name} price in USD: </span>${coin.price}
+            <span>Current {coin.name} price in USD: </span>${" "}
+            {convertToInternationalCurrencySystem(coin.price)}
           </h3>
           <h3 className="mt-3">
             <span>Change in last 24h: </span>
-            {coin.change}%
+            <span
+              style={coin.change < 0 ? { color: "red" } : { color: "green" }}
+            >
+              {coin.change}%
+            </span>
           </h3>
         </div>
       </div>

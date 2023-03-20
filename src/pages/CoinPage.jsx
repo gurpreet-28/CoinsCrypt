@@ -32,6 +32,23 @@ const CoinPage = () => {
     // eslint-disable-next-line
   }, []);
 
+  function numberWithCommas(x) {
+    return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  function convertToInternationalCurrencySystem(labelValue) {
+    // Nine Zeroes for Billions
+    return Math.abs(Number(labelValue)) >= 1.0e9
+      ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + "B"
+      : // Six Zeroes for Millions
+      Math.abs(Number(labelValue)) >= 1.0e6
+      ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + "M"
+      : // Three Zeroes for Thousands
+      Math.abs(Number(labelValue)) >= 1.0e3
+      ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + "K"
+      : Math.abs(Number(labelValue)).toFixed(2);
+  }
+
   return (
     <>
       {loading ? (
@@ -53,27 +70,50 @@ const CoinPage = () => {
                 An overview showing the statistics of Binance USD, such as the
                 base and quote currency, the rank, and trading volume.
               </p>
-              <table className="table table-hover">
+              <table className="table table-hover info-table">
                 <tbody>
                   <tr>
-                    <td>Price to USD</td>
-                    <td className="right">$ {coin.price}</td>
+                    <td>
+                      <i class="fa-solid fa-dollar-sign"></i> Price to USD
+                    </td>
+                    <td className="right">
+                      $ {convertToInternationalCurrencySystem(coin.price)}
+                    </td>
                   </tr>
                   <tr>
-                    <td>Rank</td>
+                    <td>
+                      <i class="fa-solid fa-hashtag"></i> Rank
+                    </td>
                     <td className="right">{coin.rank}</td>
                   </tr>
                   <tr>
-                    <td>24h Volume</td>
-                    <td className="right">$ {coin["24hVolume"]}</td>
+                    <td>
+                      <i class="fa-solid fa-bolt-lightning"></i> 24h Volume
+                    </td>
+                    <td className="right">
+                      ${" "}
+                      {convertToInternationalCurrencySystem(coin["24hVolume"])}
+                    </td>
                   </tr>
                   <tr>
-                    <td>Market Cap</td>
-                    <td className="right">$ {coin.marketCap}</td>
+                    <td>
+                      <i class="fa-solid fa-dollar-sign"></i> Market Cap
+                    </td>
+                    <td className="right">
+                      $ {convertToInternationalCurrencySystem(coin.marketCap)}
+                    </td>
                   </tr>
                   <tr>
-                    <td>All-time-high(daily avg.)</td>
-                    <td className="right">$ {coin?.allTimeHigh?.price}</td>
+                    <td>
+                      <i class="fa-solid fa-trophy"></i> All-time-high(daily
+                      avg.)
+                    </td>
+                    <td className="right">
+                      ${" "}
+                      {convertToInternationalCurrencySystem(
+                        coin?.allTimeHigh?.price
+                      )}
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -84,18 +124,29 @@ const CoinPage = () => {
                 An overview showing the statistics of Binance USD, such as the
                 base and quote currency, the rank, and trading volume.
               </p>
-              <table className="table table-hover">
+              <table className="table table-hover info-table">
                 <tbody>
                   <tr>
-                    <td>Number Of Markets</td>
-                    <td className="right">{coin.numberOfMarkets}</td>
+                    <td>
+                      <i class="fa-solid fa-chart-line"></i> Number Of Markets
+                    </td>
+                    <td className="right">
+                      {numberWithCommas(coin.numberOfMarkets)}
+                    </td>
                   </tr>
                   <tr>
-                    <td>Number Of Exchanges</td>
-                    <td className="right">{coin.numberOfExchanges}</td>
+                    <td>
+                      <i class="fa-solid fa-coins"></i> Number Of Exchanges
+                    </td>
+                    <td className="right">
+                      {numberWithCommas(coin.numberOfExchanges)}
+                    </td>
                   </tr>
                   <tr>
-                    <td>Aprroved Supply</td>
+                    <td>
+                      <i class="fa-solid fa-circle-exclamation"></i> Aprroved
+                      Supply
+                    </td>
                     <td className="right">
                       {coin?.supply?.confirmed ? (
                         <i class="fa-solid fa-check"></i>
@@ -105,12 +156,28 @@ const CoinPage = () => {
                     </td>
                   </tr>
                   <tr>
-                    <td>Total Supply</td>
-                    <td className="right">{coin?.supply?.total}</td>
+                    <td>
+                      <i class="fa-solid fa-circle-exclamation"></i> Total
+                      Supply
+                    </td>
+                    <td className="right">
+                      ${" "}
+                      {convertToInternationalCurrencySystem(
+                        coin?.supply?.total
+                      )}
+                    </td>
                   </tr>
                   <tr>
-                    <td>Circulating Supply</td>
-                    <td className="right">{coin?.supply?.circulating}</td>
+                    <td>
+                      <i class="fa-solid fa-circle-exclamation"></i> Circulating
+                      Supply
+                    </td>
+                    <td className="right">
+                      ${" "}
+                      {convertToInternationalCurrencySystem(
+                        coin?.supply?.circulating
+                      )}
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -126,7 +193,9 @@ const CoinPage = () => {
                 {links.map((link) => {
                   return (
                     <tr>
-                      <th>{link.type}</th>
+                      <th>
+                        {link.type.charAt(0).toUpperCase() + link.type.slice(1)}
+                      </th>
                       <td className="right">
                         <a href={link.url} target="_blank" rel="noreferrer">
                           {link.name}

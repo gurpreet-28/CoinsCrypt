@@ -12,7 +12,7 @@
 }
 .stats h5 {
   font-size: 18px;
-  color: #414141;
+  color: rgba(0, 0, 0, 0.6);
 }
 .stats p {
   font-size: 27px;

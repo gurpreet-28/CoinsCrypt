@@ -13,23 +13,21 @@ const Carousel = ({ bestCoins, newestCoins }) => {
           <div className="row">
             {bestCoins.map((coin) => {
               return (
-                <Link
-                  className="col mx-5"
-                  to={`/coin/${coin.uuid}`}
-                  key={coin.uuid}
-                >
-                  <div className="carousel-card my-2">
-                    <img
-                      src={coin.iconUrl}
-                      alt="coin-img"
-                      className="coin-img"
-                    />
-                    <div className="carousel-card-body">
-                      <p>{coin.symbol}</p>
-                      <h5 className="carousel-card-title">{coin.name}</h5>
+                <div className="col mx-5" key={coin.uuid}>
+                  <Link to={`/coin/${coin.uuid}`}>
+                    <div className="carousel-card my-2">
+                      <img
+                        src={coin.iconUrl}
+                        alt="coin-img"
+                        className="coin-img"
+                      />
+                      <div className="carousel-card-body">
+                        <p>{coin.symbol}</p>
+                        <h5 className="carousel-card-title">{coin.name}</h5>
+                      </div>
                     </div>
-                  </div>
-                </Link>
+                  </Link>
+                </div>
               );
             })}
           </div>

@@ -1,0 +1,9 @@
+.watchlist a {
+  text-decoration: none;
+}
+.coin-div {
+  width: 330px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

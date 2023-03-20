@@ -11,7 +11,7 @@
   font-size: 18px;
 }
 .price-head span {
-  color: rgba(0, 0, 0, 0.75);
+  color: rgba(0, 0, 0, 0.6);
 }
 .days-btn {
   border: 1px solid #144b9d !important;
@@ -27,14 +27,15 @@
 }
 .right {
   text-align: right;
+  color: black !important;
 }
 .coin-info h2 {
   color: #144b9d;
 }
 .coin-info p {
-  color: rgba(0, 0, 0, 0.75);
+  color: rgba(0, 0, 0, 0.6);
 }
 .coin-info td {
   font-size: 18px;
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 0.6);
 }

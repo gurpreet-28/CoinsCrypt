@@ -15,7 +15,13 @@ function Cryptocurrencies() {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
-  let wishlist = [];
+  let watchlistFromLS = JSON.parse(localStorage.getItem("watchlist"));
+  let watchlist = [];
+  if (watchlistFromLS === null) {
+    watchlist = [];
+  } else {
+    watchlist = watchlistFromLS;
+  }
 
   const fetchCoins = async () => {
     const options = {
@@ -33,6 +39,19 @@ function Cryptocurrencies() {
   list.sort((a, b) => {
     return a.rank - b.rank;
   });
+
+  function convertToInternationalCurrencySystem(labelValue) {
+    // Nine Zeroes for Billions
+    return Math.abs(Number(labelValue)) >= 1.0e9
+      ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + "B"
+      : // Six Zeroes for Millions
+      Math.abs(Number(labelValue)) >= 1.0e6
+      ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + "M"
+      : // Three Zeroes for Thousands
+      Math.abs(Number(labelValue)) >= 1.0e3
+      ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + "K"
+      : Math.abs(Number(labelValue)).toFixed(2);
+  }
 
   useEffect(() => {
     fetchCoins();
@@ -92,12 +111,15 @@ function Cryptocurrencies() {
                           <img
                             src={row.iconUrl}
                             alt="coin-img"
-                            style={{ width: "45px" }}
+                            style={{ width: "50px" }}
+                            className="me-2"
                           />
                           {"   "}
                           {row.name}
                         </td>
-                        <td>$ {row.price}</td>
+                        <td>
+                          $ {convertToInternationalCurrencySystem(row.price)}
+                        </td>
                         <td
                           style={
                             row.change < 0
@@ -107,15 +129,25 @@ function Cryptocurrencies() {
                         >
                           {row.change}%
                         </td>
-                        <td>$ {row.marketCap}</td>
+                        <td>
+                          ${" "}
+                          {convertToInternationalCurrencySystem(row.marketCap)}
+                        </td>
                         <td>
                           <i
                             onClick={() => {
-                              wishlist.push(row.name);
+                              const watchObj = {
+                                name: row.name,
+                                icon: row.iconUrl,
+                                symbol: row.symbol,
+                                uuid: row.uuid,
+                              };
+                              watchlist.push(watchObj);
                               localStorage.setItem(
-                                "wishlist",
-                                JSON.stringify(wishlist)
+                                "watchlist",
+                                JSON.stringify(watchlist)
                               );
+                              console.log(watchlist);
                             }}
                             className="fa-regular fa-star"
                           ></i>
