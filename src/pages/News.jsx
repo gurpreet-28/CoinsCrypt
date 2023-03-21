@@ -8,24 +8,22 @@ const News = () => {
   const apiKey = process.env.REACT_APP_NEWS_API_KEY;
 
   const [news, setNews] = useState([]);
-  const [page, setPage] = useState("");
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
+  const [page, setPage] = useState("");
 
   const fetchNews = async () => {
     setLoading(true);
     if (count === 0) {
-      const { data } = await axios.get(GetNews(apiKey));
-      setNews(data.results);
-      setPage(data.nextPage);
-      setCount(1);
-    } else {
       const { data } = await axios.get(GetNews(apiKey, page));
       setNews(data.results);
       setPage(data.nextPage);
+      setCount(1);
     }
     setLoading(false);
   };
+
+  console.log(news);
 
   useEffect(() => {
     fetchNews();
@@ -44,7 +42,7 @@ const News = () => {
           <div className="row">
             {news.map((article) => {
               return (
-                <div className="col-sm-2 col-md-4" key={article.url}>
+                <div className="col-sm-2 col-md-4" key={article.link}>
                   <NewsItem article={article} />
                 </div>
               );
