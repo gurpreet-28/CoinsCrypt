@@ -4,8 +4,6 @@ import NewsItem from "../components/NewsItem";
 import Spinner from "../components/Spinner";
 
 const News = () => {
-  const apiKey = process.env.REACT_APP_NEWS_API_KEY;
-
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
@@ -16,7 +14,7 @@ const News = () => {
       url: "https://newsdata2.p.rapidapi.com/news",
       params: { language: "en", q: "cryptocurrency" },
       headers: {
-        "X-RapidAPI-Key": apiKey,
+        "X-RapidAPI-Key": "27d95d49fcmshe45a3ec39ce438ap1e9abbjsn137363eadc59",
         "X-RapidAPI-Host": "newsdata2.p.rapidapi.com",
       },
     };
