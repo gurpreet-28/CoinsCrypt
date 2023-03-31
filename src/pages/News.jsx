@@ -4,8 +4,6 @@ import NewsItem from "../components/NewsItem";
 import Spinner from "../components/Spinner";
 
 const News = () => {
-  const apiKey = process.env.REACT_APP_NEWS_API_KEY;
-
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
