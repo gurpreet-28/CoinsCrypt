@@ -11,6 +11,11 @@
   align-items: center;
   justify-content: center;
 }
+.carousel col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .coin-img {
   width: 72px;
 }

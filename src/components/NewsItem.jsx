@@ -1,4 +1,5 @@
 import React from "react";
+import "./NewsItem.css";
 
 const NewsItem = (props) => {
   const { title, source_id, creator, image_url, description, link, pubDate } =
@@ -6,7 +7,7 @@ const NewsItem = (props) => {
 
   return (
     <div className="my-3">
-      <div className="card">
+      <div className="card news-card">
         <img
           src={
             image_url
@@ -17,7 +18,7 @@ const NewsItem = (props) => {
         />
         <div className="card-body">
           <h5 className="card-title">{title}</h5>
-          <span className="badge text-bg-success">{source_id}</span>
+          <span className="badge text-bg-info">{source_id}</span>
           <p
             className="card-text"
             style={{ height: "50px", maxHeight: "80px", overflow: "hidden" }}
@@ -34,7 +35,7 @@ const NewsItem = (props) => {
             href={link}
             target="_blank"
             rel="noreferrer"
-            className="btn btn-sm btn-dark"
+            className="btn btn-sm"
           >
             Read More
           </a>

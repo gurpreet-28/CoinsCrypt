@@ -49,18 +49,30 @@ const CoinInfoChart = ({ uuid, coin }) => {
   function convertToInternationalCurrencySystem(labelValue) {
     // Nine Zeroes for Billions
     return Math.abs(Number(labelValue)) >= 1.0e9
-      ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + "B"
+      ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + " B"
       : // Six Zeroes for Millions
       Math.abs(Number(labelValue)) >= 1.0e6
-      ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + "M"
+      ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + " M"
       : // Three Zeroes for Thousands
       Math.abs(Number(labelValue)) >= 1.0e3
-      ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + "K"
+      ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + " K"
       : Math.abs(Number(labelValue)).toFixed(2);
   }
 
   return (
     <>
+      <div className="coin-head">
+        <img
+          src={coin.iconUrl}
+          alt="coin-icon"
+          style={{ width: "72px", marginBottom: "5px" }}
+        />
+        <h1>{coin.name}</h1>
+        <p>
+          {coin.name} live price in US Dollars. View Statistics, Market cap and
+          Supply
+        </p>
+      </div>
       <div className="row chart-head">
         <div className="col info-head">
           <h2>{coin.name} Price Chart</h2>
@@ -98,7 +110,7 @@ const CoinInfoChart = ({ uuid, coin }) => {
         </div>
         <div className="col price-head text-end">
           <h3>
-            <span>Current {coin.name} price in USD: </span>${" "}
+            <span>Current {coin.name} price in USD: </span>$
             {convertToInternationalCurrencySystem(coin.price)}
           </h3>
           <h3 className="mt-3">
@@ -131,6 +143,15 @@ const CoinInfoChart = ({ uuid, coin }) => {
                 borderColor: "#144b9d",
               },
             ],
+          }}
+          options={{
+            scales: {
+              y: {
+                ticks: {
+                  beginAtZero: true,
+                },
+              },
+            },
           }}
         />
       </div>

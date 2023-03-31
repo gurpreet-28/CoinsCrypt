@@ -15,5 +15,5 @@ export const HistoricalChart = (uuid, period) => {
 };
 
 export const GetNews = (apiKey, page) => {
-  return `https://newsdata.io/api/1/news?apikey=${apiKey}&q=cryptocurrency&page=${page}`;
+  return `https://newsdata.io/api/1/news?apikey=${apiKey}&q=cryptocurrency`;
 };

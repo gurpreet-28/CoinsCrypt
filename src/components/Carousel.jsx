@@ -9,11 +9,11 @@ const Carousel = ({ bestCoins, newestCoins }) => {
         <div className="carousel-head">
           <h3>Trending Coins</h3>
         </div>
-        <div className="container text-center">
+        <div className="container">
           <div className="row">
             {bestCoins.map((coin) => {
               return (
-                <div className="col mx-5" key={coin.uuid}>
+                <div className="col coin-div" key={coin.uuid}>
                   <Link to={`/coin/${coin.uuid}`}>
                     <div className="carousel-card my-2">
                       <img
@@ -42,7 +42,7 @@ const Carousel = ({ bestCoins, newestCoins }) => {
             {newestCoins.map((coin) => {
               return (
                 <Link
-                  className="col mx-5"
+                  className="col coin-div"
                   to={`/coin/${coin.uuid}`}
                   key={coin.uuid}
                 >

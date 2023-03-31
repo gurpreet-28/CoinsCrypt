@@ -17,7 +17,7 @@ const Watchlist = () => {
             {watchlist.map((coin) => {
               return (
                 <div
-                  className="col col-lg-4 col-sm-2 coin-div my-2"
+                  className="col col-lg-4 col-md-6 col-sm-12 coin-div"
                   key={coin.uuid}
                 >
                   <Link to={`/coin/${coin.uuid}`}>

@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import NewsItem from "../components/NewsItem";
-import { GetNews } from "../config/api";
 import Spinner from "../components/Spinner";
 
 const News = () => {
@@ -10,20 +9,25 @@ const News = () => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
-  const [page, setPage] = useState("");
 
   const fetchNews = async () => {
+    const options = {
+      method: "GET",
+      url: "https://newsdata2.p.rapidapi.com/news",
+      params: { language: "en", q: "cryptocurrency" },
+      headers: {
+        "X-RapidAPI-Key": "27d95d49fcmshe45a3ec39ce438ap1e9abbjsn137363eadc59",
+        "X-RapidAPI-Host": "newsdata2.p.rapidapi.com",
+      },
+    };
     setLoading(true);
     if (count === 0) {
-      const { data } = await axios.get(GetNews(apiKey, page));
+      const { data } = await axios.request(options);
       setNews(data.results);
-      setPage(data.nextPage);
       setCount(1);
     }
     setLoading(false);
   };
-
-  console.log(news);
 
   useEffect(() => {
     fetchNews();
@@ -42,7 +46,7 @@ const News = () => {
           <div className="row">
             {news.map((article) => {
               return (
-                <div className="col-sm-2 col-md-4" key={article.link}>
+                <div className="col-sm-12 col-md-6 col-lg-4" key={article.link}>
                   <NewsItem article={article} />
                 </div>
               );

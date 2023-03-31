@@ -1,0 +1,17 @@
+.news-card {
+  background-color: #f1f6ff;
+}
+.news-head {
+  color: #144b9d;
+}
+.news-card .card-body .btn {
+  color: white;
+  background-color: #144b9d;
+}
+.news-card .card-body .card-title {
+  font-weight: 600;
+}
+.news-card .card-body .badge {
+  background-color: #f1f6ff;
+  margin-bottom: 8px;
+}

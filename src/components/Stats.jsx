@@ -9,13 +9,13 @@ const Stats = ({ stats }) => {
   function convertToInternationalCurrencySystem(labelValue) {
     // Nine Zeroes for Billions
     return Math.abs(Number(labelValue)) >= 1.0e9
-      ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + "B"
+      ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + " B"
       : // Six Zeroes for Millions
       Math.abs(Number(labelValue)) >= 1.0e6
-      ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + "M"
+      ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + " M"
       : // Three Zeroes for Thousands
       Math.abs(Number(labelValue)) >= 1.0e3
-      ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + "K"
+      ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + " K"
       : Math.abs(Number(labelValue)).toFixed(2);
   }
 
@@ -45,7 +45,7 @@ const Stats = ({ stats }) => {
             <div className="col">
               <h5>Total MarketCap:</h5>
               <p>
-                $ {convertToInternationalCurrencySystem(stats.totalMarketCap)}
+                ${convertToInternationalCurrencySystem(stats.totalMarketCap)}
               </p>
             </div>
           </div>
@@ -53,7 +53,7 @@ const Stats = ({ stats }) => {
             <div className="col">
               <h5>Total 24H Volume:</h5>
               <p>
-                $ {convertToInternationalCurrencySystem(stats.total24hVolume)}
+                ${convertToInternationalCurrencySystem(stats.total24hVolume)}
               </p>
             </div>
           </div>
