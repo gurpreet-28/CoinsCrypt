@@ -37,8 +37,8 @@ const News = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="container pt-5">
-          <div className="mt-5 news-head">
+        <div className="container">
+          <div className="mt-4 news-head">
             <h2>Latest news about cryptocurrency.</h2>
             <hr />
           </div>

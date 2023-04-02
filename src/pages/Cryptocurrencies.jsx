@@ -61,8 +61,8 @@ function Cryptocurrencies() {
 
   return (
     <>
-      <div className="mt-5 crypto-list">
-        <div className="container py-5">
+      <div className="crypto-list">
+        <div className="container py-4">
           <h2 className="pb-2 mb-4 border-bottom">
             Cryptocurrency Prices by Market Cap
           </h2>

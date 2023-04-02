@@ -8,7 +8,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg fixed-top">
+      <nav className="navbar navbar-expand-lg navbar-inverse sticky-top">
         <div className="container-fluid">
           <Link
             className="navbar-brand"
@@ -40,22 +40,22 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="/">
+                <Link className="nav-link" to="/">
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="/coins">
+                <Link className="nav-link" to="/coins">
                   Cryptocurrencies
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="/watchlist">
+                <Link className="nav-link" to="/watchlist">
                   Watchlist
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="/news">
+                <Link className="nav-link" to="/news">
                   News
                 </Link>
               </li>

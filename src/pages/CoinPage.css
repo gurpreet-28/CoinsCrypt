@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 80px;
+  padding-top: 30px;
 }
 .coin-page tr:hover {
   background-color: #f1f6ff;
@@ -15,7 +15,6 @@
   align-items: center;
   border-bottom: 1.5px solid rgba(0, 0, 0, 0.3);
   width: 80%;
-  margin-top: 20px;
   margin-bottom: 20px;
 }
 .coin-head h1 {
