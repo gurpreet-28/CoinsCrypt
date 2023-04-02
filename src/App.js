@@ -7,11 +7,13 @@ import News from "./pages/News";
 import Cryptocurrencies from "./pages/Cryptocurrencies";
 import Footer from "./components/Footer";
 import Watchlist from "./pages/Watchlist";
+import ScrollToTop from "./ScrollToTop";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <ScrollToTop />
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} exact />

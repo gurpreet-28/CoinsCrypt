@@ -12,6 +12,7 @@ const Watchlist = () => {
         <div className="container my-5 py-5 watchlist">
           <div className="mb-4">
             <h2>Your Watchlist</h2>
+            <hr />
           </div>
           <div className="row">
             {watchlist.map((coin) => {

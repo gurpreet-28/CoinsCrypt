@@ -84,7 +84,7 @@ function Cryptocurrencies() {
           {loading ? (
             <Spinner />
           ) : (
-            <table className="table table-hover table-responsive align-middle mt-4">
+            <table className="table table-hover align-middle mt-4">
               <thead>
                 <tr>
                   <th scope="col">Rank</th>
@@ -112,9 +112,8 @@ function Cryptocurrencies() {
                             src={row.iconUrl}
                             alt="coin-img"
                             style={{ width: "50px" }}
-                            className="me-2"
+                            className="table-coin-img me-2"
                           />
-                          {"   "}
                           {row.name}
                         </td>
                         <td>

@@ -1,3 +1,9 @@
+.watchlist {
+  min-height: 80vh;
+}
+.watchlist h2 {
+  color: #144b9d;
+}
 .watchlist a {
   text-decoration: none;
 }

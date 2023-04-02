@@ -25,6 +25,7 @@ function Navbar() {
             ></img>{" "}
             CoinsCrypt
           </Link>
+
           <button
             className="navbar-toggler"
             type="button"
