@@ -128,7 +128,7 @@ const CoinInfoChart = ({ uuid, coin }) => {
               </ul>
             </div>
             {flag ? (
-              <i class="fa-solid fa-star fa-lg ms-3"></i>
+              <i className="fa-solid fa-star fa-lg ms-3"></i>
             ) : (
               <i
                 className="fa-regular fa-star fa-lg ms-3"
