@@ -23,6 +23,7 @@ const Watchlist = () => {
 
   useEffect(() => {
     watchlistSize();
+    // eslint-disable-next-line
   }, []);
 
   return (
