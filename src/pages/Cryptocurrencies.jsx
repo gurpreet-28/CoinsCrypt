@@ -15,14 +15,6 @@ function Cryptocurrencies() {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
-  let watchlistFromLS = JSON.parse(localStorage.getItem("watchlist"));
-  let watchlist = [];
-  if (watchlistFromLS === null) {
-    watchlist = [];
-  } else {
-    watchlist = watchlistFromLS;
-  }
-
   const fetchCoins = async () => {
     const options = {
       headers: {
@@ -130,25 +122,6 @@ function Cryptocurrencies() {
                         </td>
                         <td>
                           ${convertToInternationalCurrencySystem(row.marketCap)}
-                        </td>
-                        <td>
-                          <i
-                            onClick={() => {
-                              const watchObj = {
-                                name: row.name,
-                                icon: row.iconUrl,
-                                symbol: row.symbol,
-                                uuid: row.uuid,
-                              };
-                              watchlist.push(watchObj);
-                              localStorage.setItem(
-                                "watchlist",
-                                JSON.stringify(watchlist)
-                              );
-                              console.log(watchlist);
-                            }}
-                            className="fa-regular fa-star"
-                          ></i>
                         </td>
                       </tr>
                     );

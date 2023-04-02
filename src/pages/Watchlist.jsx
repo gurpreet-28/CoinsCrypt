@@ -33,7 +33,17 @@ const Watchlist = () => {
                         <h5 className="carousel-card-title">{coin.name}</h5>
                       </div>
                       <div>
-                        <i class="fa-solid fa-trash"></i>
+                        <i
+                          className="fa-solid fa-trash"
+                          onClick={() => {
+                            return watchlist.splice(
+                              watchlist.findIndex((object) => {
+                                return object.uuid === coin.uuid;
+                              }),
+                              1
+                            );
+                          }}
+                        ></i>
                       </div>
                     </div>
                   </Link>
@@ -43,11 +53,8 @@ const Watchlist = () => {
           </div>
         </div>
       ) : (
-        <div
-          className="mt-5 pt-5 text-center"
-          style={{ height: "calc(100vh - 150px)" }}
-        >
-          <h2>Your watchlist is empty...</h2>
+        <div className="mt-5 pt-5 text-center" style={{ minHeight: "80vh" }}>
+          <h2>Your watchlist is empty...🙃</h2>
         </div>
       )}
     </>

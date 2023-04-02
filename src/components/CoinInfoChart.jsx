@@ -30,6 +30,24 @@ const CoinInfoChart = ({ uuid, coin }) => {
   const [historicData, setHistoricData] = useState([]);
   const [duration, setDuration] = useState("24h");
   const [label, setLabel] = useState("24 Hours");
+  const [flag, setFlag] = useState(false);
+
+  let watchlist = [];
+  let watchlistFromLS = JSON.parse(localStorage.getItem("watchlist"));
+  if (watchlistFromLS === null) {
+    watchlist = [];
+  } else {
+    watchlist = watchlistFromLS;
+  }
+
+  const checkCoin = () => {
+    let index = watchlist.findIndex((object) => {
+      return object.name === coin.name;
+    });
+    if (index !== -1) {
+      setFlag(true);
+    }
+  };
 
   const fetchHistoricalData = async () => {
     const options = {
@@ -43,6 +61,7 @@ const CoinInfoChart = ({ uuid, coin }) => {
 
   useEffect(() => {
     fetchHistoricalData();
+    checkCoin();
     // eslint-disable-next-line
   }, [duration]);
 
@@ -67,7 +86,9 @@ const CoinInfoChart = ({ uuid, coin }) => {
           alt="coin-icon"
           style={{ width: "72px", marginBottom: "5px" }}
         />
-        <h1>{coin.name}</h1>
+        <div className="name-head">
+          <h1>{coin.name}</h1>
+        </div>
         <p>
           {coin.name} live price in US Dollars. View Statistics, Market cap and
           Supply
@@ -106,6 +127,24 @@ const CoinInfoChart = ({ uuid, coin }) => {
                 })}
               </ul>
             </div>
+            {flag ? (
+              <i class="fa-solid fa-star fa-lg ms-3"></i>
+            ) : (
+              <i
+                className="fa-regular fa-star fa-lg ms-3"
+                onClick={() => {
+                  setFlag(true);
+                  const watchObj = {
+                    name: coin.name,
+                    icon: coin.iconUrl,
+                    symbol: coin.symbol,
+                    uuid: coin.uuid,
+                  };
+                  watchlist.push(watchObj);
+                  localStorage.setItem("watchlist", JSON.stringify(watchlist));
+                }}
+              ></i>
+            )}
           </div>
         </div>
         <div className="col price-head text-end">

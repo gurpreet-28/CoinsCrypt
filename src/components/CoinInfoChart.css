@@ -3,6 +3,15 @@
   justify-content: space-between;
   width: 85%;
 }
+.days {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.days i {
+  color: #144b9d;
+  cursor: pointer;
+}
 .info-head h2 {
   font-size: 30px;
   color: rgba(0, 0, 0, 0.8);

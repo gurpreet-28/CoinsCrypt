@@ -3,7 +3,7 @@
 }
 .coin-name {
   cursor: pointer;
-  font-size: 18px;
+  font-size: 1.2rem;
   font-weight: 450;
 }
 .coin-row i {
