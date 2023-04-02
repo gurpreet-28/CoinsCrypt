@@ -14,3 +14,14 @@
 .nav-link:hover {
   text-decoration: underline;
 }
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+.navbar-toggler-icon {
+  background-image: url("https://cdn-icons-png.flaticon.com/512/8550/8550935.png");
+}

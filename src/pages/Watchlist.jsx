@@ -67,7 +67,7 @@ const Watchlist = () => {
           </div>
         </div>
       ) : (
-        <div className="mt-5 pt-5 text-center empty-watchlist">
+        <div className="mt-4 text-center empty-watchlist">
           <h3>Your watchlist is empty...🙃</h3>
         </div>
       )}
