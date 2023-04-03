@@ -32,7 +32,7 @@ const MarketInfo = (props) => {
             <tbody>
               <tr>
                 <td>
-                  <i class="fa-solid fa-dollar-sign"></i> Price to USD
+                  <i className="fa-solid fa-dollar-sign"></i> Price to USD
                 </td>
                 <td className="right">
                   ${convertToInternationalCurrencySystem(coin.price)}
@@ -40,13 +40,13 @@ const MarketInfo = (props) => {
               </tr>
               <tr>
                 <td>
-                  <i class="fa-solid fa-hashtag"></i> Rank
+                  <i className="fa-solid fa-hashtag"></i> Rank
                 </td>
                 <td className="right">{coin.rank}</td>
               </tr>
               <tr>
                 <td>
-                  <i class="fa-solid fa-bolt-lightning"></i> 24h Volume
+                  <i className="fa-solid fa-bolt-lightning"></i> 24h Volume
                 </td>
                 <td className="right">
                   ${convertToInternationalCurrencySystem(coin["24hVolume"])}
@@ -54,7 +54,7 @@ const MarketInfo = (props) => {
               </tr>
               <tr>
                 <td>
-                  <i class="fa-solid fa-dollar-sign"></i> Market Cap
+                  <i className="fa-solid fa-dollar-sign"></i> Market Cap
                 </td>
                 <td className="right">
                   ${convertToInternationalCurrencySystem(coin.marketCap)}
@@ -62,7 +62,8 @@ const MarketInfo = (props) => {
               </tr>
               <tr>
                 <td>
-                  <i class="fa-solid fa-trophy"></i> All-time-high(daily avg.)
+                  <i className="fa-solid fa-trophy"></i> All-time-high(daily
+                  avg.)
                 </td>
                 <td className="right">
                   $
@@ -84,7 +85,7 @@ const MarketInfo = (props) => {
             <tbody>
               <tr>
                 <td>
-                  <i class="fa-solid fa-chart-line"></i> Number Of Markets
+                  <i className="fa-solid fa-chart-line"></i> Number Of Markets
                 </td>
                 <td className="right">
                   {numberWithCommas(coin.numberOfMarkets)}
@@ -92,7 +93,7 @@ const MarketInfo = (props) => {
               </tr>
               <tr>
                 <td>
-                  <i class="fa-solid fa-coins"></i> Number Of Exchanges
+                  <i className="fa-solid fa-coins"></i> Number Of Exchanges
                 </td>
                 <td className="right">
                   {numberWithCommas(coin.numberOfExchanges)}
@@ -100,19 +101,21 @@ const MarketInfo = (props) => {
               </tr>
               <tr>
                 <td>
-                  <i class="fa-solid fa-circle-exclamation"></i> Aprroved Supply
+                  <i className="fa-solid fa-circle-exclamation"></i> Aprroved
+                  Supply
                 </td>
                 <td className="right">
                   {coin?.supply?.confirmed ? (
-                    <i class="fa-solid fa-check"></i>
+                    <i className="fa-solid fa-check"></i>
                   ) : (
-                    <i class="fa-solid fa-x"></i>
+                    <i className="fa-solid fa-x"></i>
                   )}
                 </td>
               </tr>
               <tr>
                 <td>
-                  <i class="fa-solid fa-circle-exclamation"></i> Total Supply
+                  <i className="fa-solid fa-circle-exclamation"></i> Total
+                  Supply
                 </td>
                 <td className="right">
                   ${convertToInternationalCurrencySystem(coin?.supply?.total)}
@@ -120,7 +123,7 @@ const MarketInfo = (props) => {
               </tr>
               <tr>
                 <td>
-                  <i class="fa-solid fa-circle-exclamation"></i> Circulating
+                  <i className="fa-solid fa-circle-exclamation"></i> Circulating
                   Supply
                 </td>
                 <td className="right">

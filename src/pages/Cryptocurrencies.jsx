@@ -76,58 +76,63 @@ function Cryptocurrencies() {
           {loading ? (
             <Spinner />
           ) : (
-            <table className="table table-hover align-middle mt-4">
-              <thead>
-                <tr>
-                  <th scope="col">Rank</th>
-                  <th scope="col">Coin</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">24H Change</th>
-                  <th scope="col">Market Cap</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {handleSearch()
-                  .slice((page - 1) * 10, (page - 1) * 10 + 10)
-                  .map((row) => {
-                    return (
-                      <tr key={row.name} className="coin-row">
-                        <th scope="row">{row.rank}</th>
-                        <td
-                          onClick={() => {
-                            navigate(`/coin/${row.uuid}`);
-                          }}
-                          className="coin-name"
-                        >
-                          <img
-                            src={row.iconUrl}
-                            alt="coin-img"
-                            style={{ width: "50px" }}
-                            className="table-coin-img me-2"
-                          />
-                          {row.name}
-                        </td>
-                        <td>
-                          ${convertToInternationalCurrencySystem(row.price)}
-                        </td>
-                        <td
-                          style={
-                            row.change < 0
-                              ? { color: "red" }
-                              : { color: "green" }
-                          }
-                        >
-                          {row.change}%
-                        </td>
-                        <td>
-                          ${convertToInternationalCurrencySystem(row.marketCap)}
-                        </td>
-                      </tr>
-                    );
-                  })}
-              </tbody>
-            </table>
+            <div className="table-responsive">
+              <table className="table table-hover align-middle mt-4">
+                <thead>
+                  <tr>
+                    <th scope="col">Rank</th>
+                    <th scope="col">Coin</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">24H Change</th>
+                    <th scope="col">Market Cap</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {handleSearch()
+                    .slice((page - 1) * 10, (page - 1) * 10 + 10)
+                    .map((row) => {
+                      return (
+                        <tr key={row.name} className="coin-row">
+                          <th scope="row">{row.rank}</th>
+                          <td
+                            onClick={() => {
+                              navigate(`/coin/${row.uuid}`);
+                            }}
+                            className="coin-name"
+                          >
+                            <img
+                              src={row.iconUrl}
+                              alt="coin-img"
+                              style={{ width: "50px" }}
+                              className="table-coin-img me-2"
+                            />
+                            {row.name}
+                          </td>
+                          <td>
+                            ${convertToInternationalCurrencySystem(row.price)}
+                          </td>
+                          <td
+                            style={
+                              row.change < 0
+                                ? { color: "red" }
+                                : { color: "green" }
+                            }
+                          >
+                            {row.change}%
+                          </td>
+                          <td>
+                            $
+                            {convertToInternationalCurrencySystem(
+                              row.marketCap
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                </tbody>
+              </table>
+            </div>
           )}
 
           <Pagination
@@ -137,7 +142,8 @@ function Cryptocurrencies() {
               display: "flex",
               justifyContent: "center",
             }}
-            count={(handleSearch()?.length / 10).toFixed(0)}
+            color="primary"
+            count={(handleSearch()?.length / 10).toFixed(0) || 0}
             onChange={(_, value) => {
               setPage(value);
             }}

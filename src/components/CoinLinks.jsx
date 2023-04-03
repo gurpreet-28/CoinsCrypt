@@ -13,7 +13,7 @@ const CoinLinks = (props) => {
           <tbody>
             {links.map((link) => {
               return (
-                <tr key={link.uuid}>
+                <tr key={link.name}>
                   <th>
                     {link.type.charAt(0).toUpperCase() + link.type.slice(1)}
                   </th>

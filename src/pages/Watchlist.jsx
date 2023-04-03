@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Watchlist.css";
 import { Link } from "react-router-dom";
-// import Spinner from "../components/Spinner";
 
 const Watchlist = () => {
   const [size, setSize] = useState(false);

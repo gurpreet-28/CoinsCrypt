@@ -110,7 +110,7 @@ const CoinInfoChart = ({ uuid, coin }) => {
               <ul className="dropdown-menu">
                 {chartDays.map((day) => {
                   return (
-                    <li>
+                    <li key={Math.random()}>
                       <button
                         className="dropdown-item"
                         key={day.value}
