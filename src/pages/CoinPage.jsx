@@ -31,8 +31,13 @@ const CoinPage = () => {
 
   useEffect(() => {
     fetchCoin();
+    if (coin.name === undefined) {
+      document.title = `Coin - CoinsCrypt`;
+    } else {
+      document.title = `${coin?.name} - CoinsCrypt`;
+    }
     // eslint-disable-next-line
-  }, []);
+  }, [coin.name]);
 
   return (
     <>

@@ -28,6 +28,7 @@ const News = () => {
   };
 
   useEffect(() => {
+    document.title = "News - CoinsCrypt";
     fetchNews();
     // eslint-disable-next-line
   });

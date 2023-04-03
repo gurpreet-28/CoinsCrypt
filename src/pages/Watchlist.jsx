@@ -21,6 +21,7 @@ const Watchlist = () => {
   };
 
   useEffect(() => {
+    document.title = "Watchlist - CoinsCrypt";
     watchlistSize();
     // eslint-disable-next-line
   }, []);

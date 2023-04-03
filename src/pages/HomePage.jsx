@@ -30,6 +30,8 @@ function HomePage() {
   };
 
   useEffect(() => {
+    document.title =
+      "CoinsCrpyt - Track prices of your favourite cryptocurrencies";
     fetchStats();
     // eslint-disable-next-line
   }, []);

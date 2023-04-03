@@ -8,22 +8,25 @@ import Cryptocurrencies from "./pages/Cryptocurrencies";
 import Footer from "./components/Footer";
 import Watchlist from "./pages/Watchlist";
 import ScrollToTop from "./ScrollToTop";
+import NumbersState from "./context/NumbersState";
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <ScrollToTop />
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} exact />
-          <Route path="/coins" element={<Cryptocurrencies />} exact />
-          <Route path="/coin/:uuid" element={<CoinPage />} exact />
-          <Route path="/watchlist" element={<Watchlist />} exact />
-          <Route path="/news" element={<News />} exact />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <NumbersState>
+        <BrowserRouter>
+          <ScrollToTop />
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} exact />
+            <Route path="/coins" element={<Cryptocurrencies />} exact />
+            <Route path="/coin/:uuid" element={<CoinPage />} exact />
+            <Route path="/watchlist" element={<Watchlist />} exact />
+            <Route path="/news" element={<News />} exact />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </NumbersState>
     </div>
   );
 }

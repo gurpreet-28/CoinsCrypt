@@ -1,9 +1,10 @@
 import { Pagination, TextField } from "@mui/material";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import { CoinList } from "../config/api";
+import NumbersContext from "../context/NumbersContext";
 import "./Cryptocurrencies.css";
 
 function Cryptocurrencies() {
@@ -32,20 +33,11 @@ function Cryptocurrencies() {
     return a.rank - b.rank;
   });
 
-  function convertToInternationalCurrencySystem(labelValue) {
-    // Nine Zeroes for Billions
-    return Math.abs(Number(labelValue)) >= 1.0e9
-      ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + " B"
-      : // Six Zeroes for Millions
-      Math.abs(Number(labelValue)) >= 1.0e6
-      ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + " M"
-      : // Three Zeroes for Thousands
-      Math.abs(Number(labelValue)) >= 1.0e3
-      ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + " K"
-      : Math.abs(Number(labelValue)).toFixed(2);
-  }
+  const context = useContext(NumbersContext);
+  const { convertToInternationalCurrencySystem } = context;
 
   useEffect(() => {
+    document.title = "Coins - CoinsCrypt";
     fetchCoins();
     // eslint-disable-next-line
   }, []);
