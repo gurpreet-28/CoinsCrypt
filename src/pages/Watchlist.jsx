@@ -7,7 +7,7 @@ const Watchlist = () => {
   let watchlist = JSON.parse(localStorage.getItem("watchlist"));
 
   const watchlistSize = () => {
-    if (watchlist.length !== 0) {
+    if (watchlist != null && watchlist.length !== 0) {
       setSize(true);
     }
   };
