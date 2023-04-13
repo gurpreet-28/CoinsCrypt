@@ -12,3 +12,6 @@
 .coin-row:hover {
   background-color: #f1f6ff;
 }
+.crypto-table {
+  min-width: 1000px;
+}

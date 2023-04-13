@@ -69,7 +69,7 @@ function Cryptocurrencies() {
             <Spinner />
           ) : (
             <div className="table-responsive">
-              <table className="table table-hover align-middle mt-4">
+              <table className="table table-hover crypto-table align-middle mt-4">
                 <thead>
                   <tr>
                     <th scope="col">Rank</th>
