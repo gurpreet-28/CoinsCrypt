@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
-import { HistoricalChart } from "../config/api";
 import "./CoinInfoChart.css";
 import { chartDays } from "../config/data";
+import NumbersContext from "../context/NumbersContext";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -25,7 +25,9 @@ const CoinInfoChart = ({ uuid, coin }) => {
     Tooltip,
     Legend
   );
-  const apiKey = process.env.REACT_APP_API_KEY;
+
+  const context = useContext(NumbersContext);
+  const { convertToInternationalCurrencySystem } = context;
 
   const [historicData, setHistoricData] = useState([]);
   const [duration, setDuration] = useState("24h");
@@ -51,11 +53,15 @@ const CoinInfoChart = ({ uuid, coin }) => {
 
   const fetchHistoricalData = async () => {
     const options = {
+      method: "GET",
+      url: `https://coinranking1.p.rapidapi.com/coin/${uuid}/history`,
+      params: { referenceCurrencyUuid: "yhjMzLPhuIDl", timePeriod: duration },
       headers: {
-        "x-access-token": apiKey,
+        "X-RapidAPI-Key": "27d95d49fcmshe45a3ec39ce438ap1e9abbjsn137363eadc59",
+        "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
       },
     };
-    const { data } = await axios.get(HistoricalChart(uuid, duration), options);
+    const { data } = await axios.request(options);
     setHistoricData(data.data.history);
   };
 
@@ -65,18 +71,18 @@ const CoinInfoChart = ({ uuid, coin }) => {
     // eslint-disable-next-line
   }, [duration]);
 
-  function convertToInternationalCurrencySystem(labelValue) {
-    // Nine Zeroes for Billions
-    return Math.abs(Number(labelValue)) >= 1.0e9
-      ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + " B"
-      : // Six Zeroes for Millions
-      Math.abs(Number(labelValue)) >= 1.0e6
-      ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + " M"
-      : // Three Zeroes for Thousands
-      Math.abs(Number(labelValue)) >= 1.0e3
-      ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + " K"
-      : Math.abs(Number(labelValue)).toFixed(2);
-  }
+  // function convertToInternationalCurrencySystem(labelValue) {
+  //   // Nine Zeroes for Billions
+  //   return Math.abs(Number(labelValue)) >= 1.0e9
+  //     ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + " B"
+  //     : // Six Zeroes for Millions
+  //     Math.abs(Number(labelValue)) >= 1.0e6
+  //     ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + " M"
+  //     : // Three Zeroes for Thousands
+  //     Math.abs(Number(labelValue)) >= 1.0e3
+  //     ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + " K"
+  //     : Math.abs(Number(labelValue)).toFixed(2);
+  // }
 
   return (
     <>

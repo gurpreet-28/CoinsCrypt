@@ -3,13 +3,10 @@ import Banner from "../components/Banner";
 import Carousel from "../components/Carousel";
 import Spinner from "../components/Spinner";
 import Stats from "../components/Stats";
-import { GetStats } from "../config/api";
 import axios from "axios";
 import "./HomePage.css";
 
 function HomePage() {
-  const apiKey = process.env.REACT_APP_API_KEY;
-
   const [loading, setLoading] = useState(false);
   const [stats, setStats] = useState([]);
   const [bestCoins, setBestCoins] = useState([]);
@@ -18,11 +15,15 @@ function HomePage() {
   const fetchStats = async () => {
     setLoading(true);
     const options = {
+      method: "GET",
+      url: "https://coinranking1.p.rapidapi.com/stats",
+      params: { referenceCurrencyUuid: "yhjMzLPhuIDl" },
       headers: {
-        "x-access-token": apiKey,
+        "X-RapidAPI-Key": "13cbddd8c3msh83442b2d4cc3526p1cd34djsn9fe518361bc5",
+        "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
       },
     };
-    const { data } = await axios.get(GetStats(), options);
+    const { data } = await axios.request(options);
     setLoading(false);
     setStats(data.data);
     setBestCoins(data.data.bestCoins);

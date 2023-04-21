@@ -3,12 +3,10 @@ import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../components/Spinner";
-import { CoinList } from "../config/api";
 import NumbersContext from "../context/NumbersContext";
 import "./Cryptocurrencies.css";
 
 function Cryptocurrencies() {
-  const apiKey = process.env.REACT_APP_API_KEY;
   const navigate = useNavigate();
 
   const [list, setList] = useState([]);
@@ -18,13 +16,25 @@ function Cryptocurrencies() {
 
   const fetchCoins = async () => {
     const options = {
+      method: "GET",
+      url: "https://coinranking1.p.rapidapi.com/coins",
+      params: {
+        referenceCurrencyUuid: "yhjMzLPhuIDl",
+        timePeriod: "24h",
+        "tiers[0]": "1",
+        orderBy: "marketCap",
+        orderDirection: "desc",
+        limit: "100",
+        offset: "0",
+      },
       headers: {
-        "x-access-token": apiKey,
+        "X-RapidAPI-Key": "27d95d49fcmshe45a3ec39ce438ap1e9abbjsn137363eadc59",
+        "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
       },
     };
 
     setLoading(true);
-    const { data } = await axios.get(CoinList(), options);
+    const { data } = await axios.request(options);
     setList(data.data.coins);
     setLoading(false);
   };

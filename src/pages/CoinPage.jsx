@@ -3,14 +3,11 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import CoinInfoChart from "../components/CoinInfoChart";
 import Spinner from "../components/Spinner";
-import { SingleCoin } from "../config/api";
 import "./CoinPage.css";
 import MarketInfo from "../components/MarketInfo";
 import CoinLinks from "../components/CoinLinks";
 
 const CoinPage = () => {
-  const apiKey = process.env.REACT_APP_API_KEY;
-
   const { uuid } = useParams();
   const [coin, setCoin] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -19,11 +16,15 @@ const CoinPage = () => {
   const fetchCoin = async () => {
     setLoading(true);
     const options = {
+      method: "GET",
+      url: `https://coinranking1.p.rapidapi.com/coin/${uuid}`,
+      params: { referenceCurrencyUuid: "yhjMzLPhuIDl", timePeriod: "24h" },
       headers: {
-        "x-access-token": apiKey,
+        "X-RapidAPI-Key": "27d95d49fcmshe45a3ec39ce438ap1e9abbjsn137363eadc59",
+        "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
       },
     };
-    const { data } = await axios.get(SingleCoin(uuid), options);
+    const { data } = await axios.request(options);
     setLoading(false);
     setCoin(data.data.coin);
     setLinks(data.data.coin.links);
